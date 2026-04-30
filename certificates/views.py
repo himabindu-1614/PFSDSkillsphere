@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Certificate
 from .forms import CertificateForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 
 
@@ -196,7 +196,11 @@ def profile(request):
     })
 
 
+
+
 def create_admin(request):
+    User = get_user_model()
+
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser(
             username='admin',
