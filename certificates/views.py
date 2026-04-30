@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Certificate
 from .forms import CertificateForm
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
 
 
 
@@ -191,3 +194,15 @@ def profile(request):
         'expiring': expiring,
         'expired': expired
     })
+
+
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='admin',
+            email='admin@gmail.com',
+            password='admin123'
+        )
+        return HttpResponse("Admin created")
+    else:
+        return HttpResponse("Admin already exists")

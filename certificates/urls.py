@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
 
+path('create-admin/', views.create_admin),
+
 path(
 '',
 views.certificates,
