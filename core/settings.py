@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ig#729tr%wt#niir@utrg9l+ar87n-b#v-l5g=5xxfbj%bhqcv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['pfsdskillsphere.onrender.com']
 
 
 # Application definition
@@ -162,3 +162,4 @@ EMAIL_HOST_PASSWORD = 'your_app_password'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+

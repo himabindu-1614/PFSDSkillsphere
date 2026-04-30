@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 
 
-
+@login_required
 def certificates(request):
     user = request.user
     certs = Certificate.objects.filter(user=user)
@@ -167,7 +167,7 @@ def preview_certificate(request,pk):
       {'cert':cert}
     )
 
-
+@login_required
 def profile(request):
     user = request.user
 
@@ -197,7 +197,7 @@ def profile(request):
 
 
 
-
+@login_required
 def create_admin(request):
     User = get_user_model()
 
