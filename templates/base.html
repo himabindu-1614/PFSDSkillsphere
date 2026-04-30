@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SkillSphere</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#eef2f7;
+}
+
+.wrapper{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+width:280px;
+background:#eaf0fa;
+padding:30px 20px;
+position:fixed;
+height:100%;
+}
+
+.logo{
+font-size:34px;
+font-weight:bold;
+margin-bottom:40px;
+}
+
+.menu a{
+display:block;
+text-decoration:none;
+background:#dfe8f7;
+color:#183153;
+padding:22px;
+margin-bottom:20px;
+border-radius:18px;
+font-size:28px;
+font-weight:600;
+}
+
+.logout{
+background:#f6dede !important;
+}
+
+.content{
+margin-left:320px;
+padding:50px;
+width:100%;
+}
+
+.card{
+background:white;
+border-radius:30px;
+padding:45px;
+box-shadow:0 5px 18px rgba(0,0,0,.05);
+margin-bottom:40px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+margin-top:30px;
+}
+
+.stat-box{
+display:block;
+text-decoration:none;
+padding:55px 20px;
+border-radius:30px;
+text-align:center;
+font-weight:bold;
+color:#000;
+}
+
+.s1{background:#e7edf8;}
+.s2{background:#e8f5ea;}
+.s3{background:#fbf3cf;}
+.s4{background:#f9e5e5;}
+
+.stat-box h2{
+font-size:54px;
+margin-bottom:15px;
+}
+
+.stat-box p{
+font-size:30px;
+}
+
+.alert{
+background:#fbf3cf;
+padding:25px;
+border-radius:18px;
+margin:20px 0;
+font-size:24px;
+}
+
+.section-title{
+font-size:52px;
+margin-bottom:30px;
+}
+
+.big-title{
+font-size:72px;
+margin-bottom:20px;
+}
+
+.subtitle{
+font-size:34px;
+color:gray;
+margin-bottom:40px;
+}
+
+.btn{
+display:inline-block;
+background:#4f46e5;
+color:white;
+padding:18px 40px;
+text-decoration:none;
+border-radius:16px;
+margin-right:20px;
+font-size:24px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="wrapper">
+
+<div class="sidebar">
+<div class="logo">SkillSphere</div>
+
+<div class="menu">
+<a href="/cert/dashboard/">Dashboard</a>
+<a href="/cert/">Certificates</a>
+<a href="/cert/add/">Add Certificate</a>
+<a href="/cert/profile/">Profile</a>
+<a href="/logout/" class="logout">Logout</a>
+</div>
+
+</div>
+
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+
+</div>
+
+</body>
+</html>

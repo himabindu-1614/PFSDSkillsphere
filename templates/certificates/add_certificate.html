@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.page{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.card{
+background:#fff;
+padding:50px;
+border-radius:30px;
+box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+h1{
+font-size:48px;
+font-weight:700;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+font-size:22px;
+font-weight:600;
+margin-top:24px;
+margin-bottom:12px;
+}
+
+input,select{
+width:100%;
+padding:18px;
+border:1px solid #d9d9d9;
+border-radius:14px;
+font-size:18px;
+background:#fafafa;
+}
+
+input:focus,select:focus{
+outline:none;
+border:2px solid #4f46e5;
+background:#fff;
+}
+
+.skill-box{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+margin-top:15px;
+}
+
+.skill-box label{
+background:#f4f5ff;
+padding:14px 18px;
+border-radius:12px;
+font-size:18px;
+margin:0;
+cursor:pointer;
+}
+
+.skill-box input{
+width:auto;
+margin-right:8px;
+}
+
+.save-btn{
+margin-top:35px;
+background:#4f46e5;
+color:white;
+border:none;
+padding:18px 42px;
+font-size:22px;
+border-radius:15px;
+font-weight:600;
+cursor:pointer;
+}
+
+.save-btn:hover{
+background:#4338ca;
+}
+
+.message{
+padding:15px;
+border-radius:12px;
+margin-bottom:20px;
+background:#e8fff0;
+}
+</style>
+
+<div class="page">
+<div class="card">
+
+<h1>Add Certificate</h1>
+
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<label>Certificate Title</label>
+{{ form.title }}
+
+<label>Organization</label>
+{{ form.issuer }}
+
+<label>Domain</label>
+{{ form.category }}
+
+<label>Issue Date</label>
+{{ form.issue_date }}
+
+<label>Expiry Date</label>
+{{ form.expiry_date }}
+
+<label>Skills Learned</label>
+
+<div class="skill-box">
+<label><input type="checkbox">Python</label>
+<label><input type="checkbox">Java</label>
+<label><input type="checkbox">Django</label>
+<label><input type="checkbox">Spring Boot</label>
+<label><input type="checkbox">AWS</label>
+<label><input type="checkbox">DevOps</label>
+<label><input type="checkbox">Machine Learning</label>
+<label><input type="checkbox">Data Science</label>
+<label><input type="checkbox">Cyber Security</label>
+<label><input type="checkbox">Blockchain</label>
+<label><input type="checkbox">Docker</label>
+<label><input type="checkbox">Git</label>
+</div>
+
+<label>Upload Certificate</label>
+{{ form.certificate_file }}
+
+<button type="submit" class="save-btn">
+Save Certificate
+</button>
+
+</form>
+
+</div>
+</div>
+
+{% endblock %}

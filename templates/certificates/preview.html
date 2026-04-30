@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+.preview-container{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.preview-card{
+background:white;
+padding:55px;
+border-radius:30px;
+box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+.title{
+font-size:50px;
+font-weight:700;
+margin-bottom:35px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+margin-bottom:30px;
+}
+
+.box{
+background:#f7f9ff;
+padding:22px;
+border-radius:18px;
+}
+
+.label{
+font-size:14px;
+color:#666;
+margin-bottom:8px;
+}
+
+.value{
+font-size:24px;
+font-weight:600;
+}
+
+.actions{
+margin-top:35px;
+display:flex;
+gap:18px;
+}
+
+.btn{
+background:#4f46e5;
+color:white;
+padding:15px 30px;
+border-radius:14px;
+text-decoration:none;
+font-weight:600;
+}
+
+.filebox{
+margin-top:30px;
+background:#eef2ff;
+padding:20px;
+border-radius:16px;
+}
+
+</style>
+
+
+<div class="preview-container">
+
+<div class="preview-card">
+
+<div class="title">
+{{cert.title}}
+</div>
+
+
+<div class="grid">
+
+<div class="box">
+<div class="label">
+Issuer
+</div>
+<div class="value">
+{{cert.issuer}}
+</div>
+</div>
+
+
+<div class="box">
+<div class="label">
+Category
+</div>
+<div class="value">
+{{cert.category}}
+</div>
+</div>
+
+
+<div class="box">
+<div class="label">
+Issue Date
+</div>
+<div class="value">
+{{cert.issue_date}}
+</div>
+</div>
+
+
+<div class="box">
+<div class="label">
+Expiry Date
+</div>
+<div class="value">
+{{cert.expiry_date}}
+</div>
+</div>
+
+</div>
+
+
+
+<div class="box">
+
+<div class="label">
+Verification Status
+</div>
+
+<div class="value">
+{% if cert.is_verified %}
+Verified
+{% else %}
+Pending Verification
+{% endif %}
+</div>
+
+</div>
+
+
+{% if cert.certificate_file %}
+<div class="filebox">
+
+<a
+href="{{ cert.certificate_file.url }}"
+target="_blank"
+class="btn">
+Open Uploaded Certificate
+</a>
+
+</div>
+{% endif %}
+
+
+
+<div class="actions">
+
+<a href="/cert/" class="btn">
+Back
+</a>
+
+<a
+href="/cert/edit/{{cert.id}}/"
+class="btn">
+Edit
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

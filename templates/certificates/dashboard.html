@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hero">
+
+<div class="hero-left">
+<h1>Welcome Back, {{request.user.username}}</h1>
+
+<p>
+Manage certifications, monitor expiry dates,
+track verification and organize your skill portfolio.
+</p>
+
+<div class="hero-btns">
+<a href="/cert/add/">+ Add Certificate</a>
+<a href="/cert/">Manage Certificates</a>
+</div>
+</div>
+
+
+<div class="hero-right">
+<h3>SkillSphere Features</h3>
+
+<ul>
+<li>Certificate Vault Management</li>
+<li>Expiry Alerts and Renewal Tracking</li>
+<li>Verification Monitoring</li>
+<li>Skill Portfolio Building</li>
+<li>Domain Based Certificate Organization</li>
+</ul>
+</div>
+
+</div>
+
+
+
+<div class="stats-grid">
+
+<a href="/cert/" class="card blue">
+<h2>{{total}}</h2>
+<p>Total Certificates</p>
+</a>
+
+<a href="/cert/?verified=yes" class="card green">
+<h2>{{verified}}</h2>
+<p>Verified</p>
+</a>
+
+<a href="/cert/?expiring=yes" class="card gold">
+<h2>{{expiring_count}}</h2>
+<p>Expiring Soon</p>
+</a>
+
+<a href="/cert/?expired=yes" class="card pink">
+<h2>{{expired}}</h2>
+<p>Expired</p>
+</a>
+
+</div>
+
+
+
+<div class="bottom-grid">
+
+<div class="panel">
+<h2>Upcoming Expiry Alerts</h2>
+
+{% if expiring_list %}
+{% for c in expiring_list %}
+<div class="alertbox">
+⚠ {{c.title}} expires soon
+</div>
+{% endfor %}
+{% else %}
+<div class="alertbox">
+No renewals due right now
+</div>
+{% endif %}
+
+</div>
+
+
+
+<div class="panel">
+<h2>Portfolio Insights</h2>
+
+<div class="info-box">
+Credential Health Score :
+<strong>
+{% if total > 0 %}
+92%
+{% else %}
+Start Uploading
+{% endif %}
+</strong>
+</div>
+
+<div class="info-box">
+Recommended Focus :
+Cloud / AI Certifications
+</div>
+
+<div class="info-box">
+Learning Status :
+Active
+</div>
+
+</div>
+
+</div>
+
+
+
+<style>
+
+.hero{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:30px;
+background:white;
+padding:50px;
+border-radius:30px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+margin-bottom:35px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+color:#666;
+line-height:1.6;
+}
+
+.hero-btns{
+margin-top:30px;
+display:flex;
+gap:18px;
+}
+
+.hero-btns a{
+background:#4f46e5;
+color:white;
+text-decoration:none;
+padding:15px 28px;
+border-radius:14px;
+font-weight:600;
+}
+
+.hero-right{
+background:#f8fbff;
+padding:30px;
+border-radius:22px;
+}
+
+.hero-right h3{
+margin-bottom:20px;
+}
+
+.hero-right li{
+margin:14px 0;
+}
+
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:28px;
+margin-bottom:35px;
+}
+
+.card{
+text-decoration:none;
+color:black;
+padding:45px 20px;
+text-align:center;
+border-radius:24px;
+transition:.2s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+font-size:52px;
+margin-bottom:12px;
+}
+
+.card p{
+font-size:20px;
+font-weight:600;
+}
+
+.blue{
+background:#eef4ff;
+}
+
+.green{
+background:#ebfff0;
+}
+
+.gold{
+background:#fff8d9;
+}
+
+.pink{
+background:#ffeaea;
+}
+
+
+.bottom-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.panel{
+background:white;
+padding:40px;
+border-radius:28px;
+box-shadow:0 8px 20px rgba(0,0,0,.04);
+}
+
+.panel h2{
+margin-bottom:25px;
+font-size:34px;
+}
+
+.alertbox{
+background:#fff6d5;
+padding:18px;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+.info-box{
+background:#f7f9fc;
+padding:18px;
+border-radius:12px;
+margin-bottom:16px;
+}
+
+@media(max-width:1000px){
+
+.hero{
+grid-template-columns:1fr;
+}
+
+.stats-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.bottom-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+{% endblock %}
